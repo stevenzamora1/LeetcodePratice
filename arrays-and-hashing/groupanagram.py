@@ -2,6 +2,7 @@ class Solution:
     def groupAnagrams(self, strs: list[str]) -> list[list[str]]:
         output = {}
         outputlist = []
+
         for n in strs:
             result = sorted(n)
             sorted_letters = "".join(result)
@@ -18,3 +19,16 @@ class Solution:
 
 obj = Solution()
 print(obj.groupAnagrams([""]))
+
+
+'''
+Code explaination:
+
+
+Create a hashmap 
+The keys are each unique anagrams but sorted alphabatically using sorted() method.
+The values are a list of each string that matches the letters of the keys
+
+
+
+'''
