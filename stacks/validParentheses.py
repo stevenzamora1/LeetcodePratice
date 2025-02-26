@@ -3,7 +3,7 @@ class Solution:
         # Initialize an empty stack to keep track of opening brackets
         stack = []
 
-        # Mapping of closing brackets to their corresponding opening brackets
+        # Hash Table to Map closing brackets to opening brackets
         closeToOpen = {
             "]": "[",
             "}": "{",
