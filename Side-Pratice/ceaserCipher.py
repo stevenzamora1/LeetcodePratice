@@ -33,5 +33,5 @@ def caesar_cipher(s: str, shift: int, mode: str) -> str:
     return "error with mode"
 
 
-print(caesar_cipher("Hello#@!$", 3, "encode"))
-print(caesar_cipher("Khooro#@!$", 3, "decode"))
+print(caesar_cipher("opx mfut ubml jo dpef", 25, "encode"))
+print(caesar_cipher("now lets talk in code", 25, "decode"))
