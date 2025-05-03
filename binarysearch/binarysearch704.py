@@ -9,14 +9,11 @@ class Solution:
                 return halfpoint
 
             if nums[halfpoint] > target:
-
                 right = halfpoint - 1
                 halfpoint = (left+right) // 2
 
             else:
-
                 left = halfpoint + 1
-
                 halfpoint = (left + right) // 2
 
             print(left, halfpoint, right)
