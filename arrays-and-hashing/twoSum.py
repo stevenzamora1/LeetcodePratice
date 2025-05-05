@@ -1,8 +1,7 @@
-# TODO
-# Fix issues of it not working
-
 
 class Solution:
+
+    # First Attempt a couple of months ago
     def twoSum(self, nums: list[int], target: int) -> list[int]:
         nums_return = []
 
@@ -20,6 +19,15 @@ class Solution:
                 return nums_return
 
         return nums_return
+
+    # Second attempt right
+    def twoSum(nums: list[int], target: int) -> list[int]:
+        hashMap = {}
+        for n in range(0, len(nums)):
+            found = target - nums[n]
+            if nums[n] in hashMap:
+                return [n, hashMap.get(nums[n])]
+            hashMap[found] = n
 
 
 obj = Solution()
