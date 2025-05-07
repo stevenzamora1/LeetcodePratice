@@ -28,3 +28,25 @@ class Solution:
         # After processing all characters, return True if the stack is empty (all brackets matched)
         # Otherwise, return False (unmatched opening brackets remain in the stack)
         return True if not stack else False
+
+
+# second attempt as a intervew style
+def isValid(s: str) -> bool:
+    stack = []
+    hashMap = {
+        "}": "{",
+        "]": "[",
+        ")": "("
+    }
+    for n in s:
+
+        if n == "{" or n == "[" or n == "(":
+            stack.append(n)
+        elif len(stack) > 0 and (stack[-1] == hashMap[n]):
+            stack.pop()
+        else:
+            return False
+
+    if len(stack) != 0:
+        return False
+    return True

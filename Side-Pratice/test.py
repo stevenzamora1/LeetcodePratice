@@ -21,21 +21,48 @@ def topKFrequent(nums: list[int], k: int) -> list[int]:
             return res
 
 
-def twoSumt(nums: list[int], target: int) -> list[int]:
-    indexOne = 0
-
-    for n in range(1, len(nums)):
-
-        print([indexOne, n])
-        if target - nums[indexOne] == nums[n]:
-            return [indexOne, n]
-        indexOne += 1
-
-
-def twoSum(nums: list[int], target: int) -> list[int]:
+def topKFrequent(nums: list[int], k: int) -> list[int]:
     hashMap = {}
-    for n in range(0, len(nums)):
-        found = target - nums[n]
-        if nums[n] in hashMap:
-            return [n, hashMap.get(nums[n])]
-        hashMap[found] = n
+
+    current = nums[0]
+    count = 0
+    for n in nums:
+        print(current, n)
+        if n == current:
+            count += 1
+        else:
+            hashMap[count] = current
+            current = n
+            count = 0
+
+    print(hashMap)
+    print(sorted(hashMap))
+    return [3]
+
+
+def isValid(s: str) -> bool:
+    stack = []
+    hashMap = {
+        "}": "{",
+        "]": "[",
+        ")": "("
+    }
+    for n in s:
+
+        if n == "{" or n == "[" or n == "(":
+            stack.append(n)
+        elif len(stack) > 0 and (stack[-1] == hashMap[n]):
+            stack.pop()
+        else:
+            return False
+
+    if len(stack) != 0:
+        return False
+    return True
+
+
+# print(isValid("([])"))  # true
+# print(isValid("([)"))  # false
+print(isValid("("))  # false
+print(isValid("]"))  # false
+print(isValid("[(])"))
