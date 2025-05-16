@@ -61,8 +61,31 @@ def isValid(s: str) -> bool:
     return True
 
 
-# print(isValid("([])"))  # true
-# print(isValid("([)"))  # false
-print(isValid("("))  # false
-print(isValid("]"))  # false
-print(isValid("[(])"))
+def containsDuplicate(nums: list[int]) -> bool:
+    dupSet = set()
+    for n in nums:
+        if n in dupSet:
+            return True
+        dupSet.add(n)
+
+    return False
+
+
+def groupAnagrams(strs: list[str]) -> list[list[str]]:
+    stringHash = {}
+    stringArray = []
+    for n in strs:
+        sortedString = "".join(sorted(n))
+        if sortedString in stringHash:
+            stringHash[sortedString].append(n)
+        else:
+            stringHash[sortedString] = [n]
+    for y in stringHash:
+        stringArray.append(stringHash[y])
+
+    return stringArray
+
+
+print(groupAnagrams(["rat", "tar", "art", "car", "arc", "elbow", "below"]))
+print(groupAnagrams(["a", "b", "c"]))
+print(groupAnagrams(["a"]))
