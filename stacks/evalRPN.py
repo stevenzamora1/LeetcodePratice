@@ -31,7 +31,7 @@ def evalRPN(tokens: list[str]) -> int:
     return tokenStack.pop()
 
 
-print(evalRPN(["2", "1", "+", "3", "*"]))
-print(evalRPN(["4", "13", "5", "/", "+"]))
+print(evalRPN(["2", "1", "+", "3", "*"]))  # answer is 9
+print(evalRPN(["4", "13", "5", "/", "+"]))  # answer is 6
 print(evalRPN(["10", "6", "9", "3", "+", "-11",
-      "*", "/", "*", "17", "+", "5", "+"]))
+      "*", "/", "*", "17", "+", "5", "+"]))  # answer is 22
