@@ -1,106 +1,27 @@
-def topKFrequent(nums: list[int], k: int) -> list[int]:
-    hashTable = {}
-    freq = [[] for i in range(len(nums))]
-
-    for n in nums:
-        if n in hashTable:
-            hashTable[n] += 1
-        else:
-            hashTable[n] = 1
-
-    for key in hashTable:
-        freq[hashTable[key]].append(key)
-    freq2 = [val for val in freq if val != []]
-    res = []
-
-    for i in range(len(freq2) - 1, -1, -1):
-
-        res.extend(freq2[i])
-
-        if len(res) == k:
-            return res
-
-
-def topKFrequent(nums: list[int], k: int) -> list[int]:
-    hashMap = {}
-
-    current = nums[0]
-    count = 0
-    for n in nums:
-        print(current, n)
-        if n == current:
-            count += 1
-        else:
-            hashMap[count] = current
-            current = n
-            count = 0
-
-    print(hashMap)
-    print(sorted(hashMap))
-    return [3]
-
-
-def isValid(s: str) -> bool:
-    stack = []
-    hashMap = {
-        "}": "{",
-        "]": "[",
-        ")": "("
-    }
-    for n in s:
-
-        if n == "{" or n == "[" or n == "(":
-            stack.append(n)
-        elif len(stack) > 0 and (stack[-1] == hashMap[n]):
-            stack.pop()
-        else:
-            return False
-
-    if len(stack) != 0:
+def isPalindrome(x: int) -> bool:
+    if x < 0:
         return False
+    div = 1
+    while x >= 10 * div:
+        div *= 10
+    print(div)
+    while x:
+
+        r = x % 10
+        l = x // div
+
+        if l != r:
+            return False
+        x = x % div
+
+        x = x // 10
+
+        div = div / 100
+
     return True
 
 
-def containsDuplicate(nums: list[int]) -> bool:
-    dupSet = set()
-    for n in nums:
-        if n in dupSet:
-            return True
-        dupSet.add(n)
-
-    return False
-
-
-def groupAnagrams(strs: list[str]) -> list[list[str]]:
-    stringHash = {}
-    stringArray = []
-    for n in strs:
-        sortedString = "".join(sorted(n))
-        if sortedString in stringHash:
-            stringHash[sortedString].append(n)
-        else:
-            stringHash[sortedString] = [n]
-    for y in stringHash:
-        stringArray.append(stringHash[y])
-
-    return stringArray
-
-
-def maxArea(height: list[int]) -> int:
-    l, r = 0, len(height) - 1
-    maxi = 0
-
-    while l != r:
-        temp = min(height[l], height[r]) * (r - l)
-
-        maxi = max(temp, maxi)
-        if height[l] >= height[r]:
-            r -= 1
-        else:
-            l += 1
-
-    return maxi
-
-
-print(maxArea([1, 8, 6, 2, 5, 4, 8, 3, 7]))  # 49
-print(maxArea([8, 7, 2, 1]))  # 7
+print(isPalindrome(1000021))
+print(isPalindrome(11))
+# print(isPalindrome(10))
+# print(isPalindrome(121))
