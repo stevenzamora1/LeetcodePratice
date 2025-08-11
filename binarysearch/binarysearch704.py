@@ -1,25 +1,45 @@
-class Solution:
-    def search(self, nums: list[int], target: int) -> int:
-        left = 0
-        right = len(nums) - 1
-        halfpoint = (left + right) // 2
+def searchMatrix(matrix: list[list[int]], target: int) -> bool:
+    top = 0
+    bottom = len(matrix) - 1
+    midpoint = (top + bottom) // 2
 
-        while left <= right:
-            if nums[halfpoint] == target:
-                return halfpoint
+    while (top <= bottom):
 
-            if nums[halfpoint] > target:
-                right = halfpoint - 1
-                halfpoint = (left+right) // 2
+        if matrix[midpoint][0] > target:
+            bottom = midpoint - 1
+            midpoint = (top + bottom) // 2
 
-            else:
-                left = halfpoint + 1
-                halfpoint = (left + right) // 2
+        elif matrix[midpoint][len(matrix[midpoint]) - 1] < target:
+            top = midpoint + 1
+            midpoint = (top + bottom) // 2
 
-            print(left, halfpoint, right)
-
-        return -1
+        elif matrix[midpoint][0] <= target and matrix[midpoint][-1] >= target:
+            return binarySearch(matrix[midpoint], target) != -1
 
 
-obj = Solution()
-print(obj.search([-1, 0, 3, 5, 9, 12], 9))
+def binarySearch(numbers: list[int], target: int) -> int:
+    output = -1
+    low = 0
+    high = len(numbers) - 1
+    midpoint = (low + high) // 2
+
+    while low <= high:
+
+        if numbers[midpoint] == target:
+            return midpoint
+        if numbers[midpoint] < target:
+            low = midpoint + 1
+            midpoint = (low + high) // 2
+        else:
+            high = midpoint - 1
+            midpoint = (low + high) // 2
+
+    return output
+
+
+print(searchMatrix([[1, 3, 5, 7],
+                   [10, 11, 16, 20],
+                   [23, 30, 34, 60]], 3))  # true
+print(searchMatrix([[1, 3, 5, 7],
+                   [10, 11, 16, 20],
+                   [23, 30, 34, 60]], 13))  # false
